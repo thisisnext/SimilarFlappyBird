@@ -64,3 +64,7 @@ document.addEventListener('keypress', (e) => {
         bird.moveUp();
     }
 })
+
+document.onmousedown = function(){
+  bird.moveUp();
+};
