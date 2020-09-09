@@ -4,7 +4,7 @@ function Bird() {
     this.h = 30;
     this.w = 30;
     this.velY = 0
-    this.impulse = -13;
+    this.impulse = -15;
     this.gravity = 0.6;
     this.lbl = document.getElementById("title")
     
