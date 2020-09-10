@@ -4,7 +4,7 @@ function Bird() {
     this.h = 30;
     this.w = 30;
     this.velY = 0
-    this.impulse = -13;
+    this.impulse = -15;
     this.gravity = 0.6;
     this.lbl = document.getElementById("title")
     
@@ -14,17 +14,18 @@ function Bird() {
     }
     
     this.move = function() { 
-      
       this.velY += this.gravity;
       this.y += this.velY;
       this.velY *= 0.9
 
-      if(this.y >= canvas.height) {
+      if(this.y >= canvas.height - this.h) {
         this.velY = 0;
         this.gravity = 0;
         this.impulse = 0;
         this.y = canvas.height-this.h;
+        gameover = true;
         lbl.innerHTML = "Game Over! - Desenvolvido por Next!";
+        btnRestart.disabled = false;
       }
     }
     

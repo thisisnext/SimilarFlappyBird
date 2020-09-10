@@ -1,10 +1,11 @@
 var columns = [];
 var bird;
-this.gameover = false;
+var gameover = false;
 var lbl;
 var ptn;
 var points;
 var frameCount;
+var btnRestart;
 
 function setup() {
     bird = new Bird();
@@ -13,6 +14,8 @@ function setup() {
     lbl = document.getElementById("title")
     ptn = document.getElementById("points")
     frameCount = 0;
+    btnRestart = document.querySelector("#btn-restart");
+    btnRestart.disabled = true;
     requestAnimationFrame(drawn);
 }
 window.addEventListener("load", setup);
@@ -25,9 +28,9 @@ function drawn() {
     frameCount++;
 
     for(var i = columns.length-1; i >= 0; i--) {
-    
+  
         columns[i].show();
-        if(!this.gameover) {
+        if(this.gameover === false) {
           columns[i].move(); 
         }
         if(columns[i].outview()) {
@@ -36,18 +39,18 @@ function drawn() {
         
         if(columns[i].collision(bird)) {
           this.gameover = true;
+          btnRestart.disabled = false;
           lbl.innerHTML = "Game Over! - Desenvolvido por Next!";
         }
         
         if(columns[i].markPoint(bird) && !this.gameover) {
           points++;
-          ptn.innerHTML = `Pontos: ${points}`
+          ptn.innerHTML = `| Pontos: ${points}`
         }
         
       }
 
       bird.show();
-  
       if(!this.gameover) {
         bird.move();
       }
@@ -55,16 +58,43 @@ function drawn() {
     if(frameCount % 150 == 0) {
         columns.push(new Column())
     }
-    requestAnimationFrame(drawn)
+    if(!this.gameover) requestAnimationFrame(drawn)
 }
 
+function restart() {
+  // Main
+  columns = [];
+  gameover = false;
+  frameCount = 0;
+  setup();
+  ptn.innerHTML = `| Pontos: ${points}`
+  lbl.innerHTML = "FLAPPY BIRD - Next";
+
+  // Bird
+  bird.impulse = -15;
+  bird.gravity = 0.6;
+  bird.y = canvas.height/2;
+  bird.velY = 0;
+}
 
 document.addEventListener('keypress', (e) => {
     if(e.keyCode == 32) {
         bird.moveUp();
+        if(this.gameover) {
+          restart();
+        }
     }
 })
 
-document.onmousedown = function(){
+function onlyTouch(ev) {
   bird.moveUp();
-};
+  ev.preventDefault();
+} 
+
+function onlyClick(ev) {
+  bird.moveUp();
+  ev.preventDefault();
+} 
+
+document.addEventListener("click", onlyClick) 
+document.addEventListener("touchstart", onlyTouch)

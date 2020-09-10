@@ -19,7 +19,7 @@ function Column() {
       ctx.fillStyle = 'rgb(255, 255, 255)'
       ctx.fillRect(this.x, this.y, this.wid*2, this.top*8)
       
-      newh = (68 / 100) * (canvas.height - this.top*8)
+      newh = (65 / 100) * (canvas.height - this.top*8)
       if(newh + this.top*8 > 320) {
         newh -= 25;
       }
