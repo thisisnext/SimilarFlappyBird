@@ -7,17 +7,27 @@ var points;
 var frameCount;
 var btnRestart;
 var sprite;
+var scene;
+var base;
+var baseX;
+var baseX2;
 
 function setup() {
     bird = new Bird();
     columns.push(new Column());
     points = 0;
+    frameCount = 0;
+    baseX = 0;
+    baseX2 = 400;
     lbl = document.getElementById("title")
     ptn = document.getElementById("points")
-    frameCount = 0;
     btnRestart = document.querySelector("#btn-restart");
     sprite = new Image();
-    sprite.src = 'assets/bird.png'
+    sprite.src = 'assets/bird.png';
+    scene = new Image();
+    scene.src = 'assets/bg.png';
+    base = new Image();
+    base.src = 'assets/base.png';
     btnRestart.disabled = true;
     requestAnimationFrame(drawn);
 }
@@ -26,8 +36,7 @@ window.addEventListener("load", setup);
 function drawn() {
     this.canvas = document.getElementById("canvas");
     this.ctx = canvas.getContext("2d");
-    ctx.fillStyle = 'rgba(0, 0, 0, 1)'
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(scene, 0, 0, scene.width, scene.height, 0, 0, canvas.width, canvas.height)
     frameCount++;
 
     for(var i = columns.length-1; i >= 0; i--) {
@@ -48,19 +57,25 @@ function drawn() {
         
         if(columns[i].markPoint(bird) && !this.gameover) {
           points++;
-          ptn.innerHTML = `| Pontos: ${points}`
+          ptn.innerHTML = `| Pontos: ${points}`;
         }
         
       }
 
-      bird.show();
-      if(!this.gameover) {
-        bird.move();
-      }
+    bird.show();
+    if(!this.gameover) {
+      bird.move();
+    }
       
     if(frameCount % 150 == 0) {
         columns.push(new Column())
     }
+
+    ctx.drawImage(base, 0, 0, base.width, base.height, baseX--, 350, canvas.width, 100);
+    ctx.drawImage(base, 0, 0, base.width, base.height, baseX2--, 350, canvas.width, 100);
+    if(baseX <= -400) baseX = 400;
+    if(baseX2 <= -400) baseX2 = baseX+400;
+
     if(!this.gameover) requestAnimationFrame(drawn)
 }
 

@@ -7,7 +7,6 @@ function Bird() {
     this.impulse = -15;
     this.gravity = 0.6;
     this.lbl = document.getElementById("title")
-    this.sprite = new Image()
     this.srcW = 2392/4;
     this.srcH = 402;
     this.srcX = 0
@@ -30,11 +29,11 @@ function Bird() {
       this.y += this.velY;
       this.velY *= 0.9
 
-      if(this.y >= canvas.height - this.h) {
+      if(this.y >= 320) {
         this.velY = 0;
         this.gravity = 0;
         this.impulse = 0;
-        this.y = canvas.height-this.h;
+        this.y = 320;
         gameover = true;
         lbl.innerHTML = "Game Over! - Desenvolvido por Next!";
         btnRestart.disabled = false;
