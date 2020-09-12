@@ -6,6 +6,7 @@ var ptn;
 var points;
 var frameCount;
 var btnRestart;
+var sprite;
 
 function setup() {
     bird = new Bird();
@@ -15,6 +16,8 @@ function setup() {
     ptn = document.getElementById("points")
     frameCount = 0;
     btnRestart = document.querySelector("#btn-restart");
+    sprite = new Image();
+    sprite.src = 'assets/bird.png'
     btnRestart.disabled = true;
     requestAnimationFrame(drawn);
 }
@@ -94,7 +97,7 @@ function onlyTouch(ev) {
 function onlyClick(ev) {
   bird.moveUp();
   ev.preventDefault();
-} 
+}
 
 document.addEventListener("click", onlyClick) 
 document.addEventListener("touchstart", onlyTouch)
