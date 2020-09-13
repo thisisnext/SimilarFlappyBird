@@ -101,13 +101,14 @@ function restart() {
   bird.velY = 0;
 }
 
-document.addEventListener('keypress', (e) => {
-    if(e.keyCode == 32) {
-        bird.moveUp();
-        if(this.gameover) {
-          restart();
-        }
+document.addEventListener('keypress', (ev) => {
+  if(ev.code === 'Space') {
+    bird.moveUp();
+    if(this.gameover) {
+      restart();
     }
+  }
+  ev.preventDefault();
 })
 
 function onlyTouch(ev) {
