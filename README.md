@@ -3,3 +3,4 @@
 - Aperte **espaço** ou **clique** para pular.
 - [Demonstração](https://neptunexdb.github.io/SimilarFlappyBird/)
 <img src="https://i.imgur.com/LYrhVpa.png" width="400" height="400">
+<img src="https://i.imgur.com/wjahuJh.png" width="400" height="400">
