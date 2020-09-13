@@ -97,7 +97,7 @@ function restart() {
   // Bird
   bird.impulse = -15;
   bird.gravity = 0.6;
-  bird.y = canvas.height/2;
+  bird.y = 0;
   bird.velY = 0;
 }
 
@@ -121,5 +121,5 @@ function onlyClick(ev) {
   ev.preventDefault();
 }
 
-document.addEventListener("click", onlyClick) 
-document.addEventListener("touchstart", onlyTouch)
+canvas.addEventListener("click", onlyClick) 
+canvas.addEventListener("touchstart", onlyTouch)
