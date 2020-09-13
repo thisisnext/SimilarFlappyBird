@@ -1,6 +1,6 @@
 function Bird() {
     this.x = 30;
-    this.y = canvas.height/2;
+    this.y = 0;
     this.w = 30;
     this.h = 30;
     this.velY = 0

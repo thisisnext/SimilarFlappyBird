@@ -6,11 +6,13 @@ var ptn;
 var points;
 var frameCount;
 var btnRestart;
+
 var sprite;
 var scene;
 var base;
 var baseX;
 var baseX2;
+var column;
 
 function setup() {
     bird = new Bird();
@@ -22,12 +24,16 @@ function setup() {
     lbl = document.getElementById("title")
     ptn = document.getElementById("points")
     btnRestart = document.querySelector("#btn-restart");
+
     sprite = new Image();
     sprite.src = 'assets/bird.png';
     scene = new Image();
     scene.src = 'assets/bg.png';
     base = new Image();
     base.src = 'assets/base.png';
+    column = new Image()
+    column.src = 'assets/column.png';
+
     btnRestart.disabled = true;
     requestAnimationFrame(drawn);
 }
@@ -36,7 +42,7 @@ window.addEventListener("load", setup);
 function drawn() {
     this.canvas = document.getElementById("canvas");
     this.ctx = canvas.getContext("2d");
-    ctx.drawImage(scene, 0, 0, scene.width, scene.height, 0, 0, canvas.width, canvas.height)
+    ctx.drawImage(scene, 0, 0, scene.width, scene.height, 0, 0, canvas.width, canvas.height);
     frameCount++;
 
     for(var i = columns.length-1; i >= 0; i--) {
