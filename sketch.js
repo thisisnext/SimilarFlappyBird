@@ -73,7 +73,7 @@ function drawn() {
       bird.move();
     }
       
-    if(frameCount % 150 == 0) {
+    if(frameCount % 180 == 0) {
         columns.push(new Column())
     }
 
